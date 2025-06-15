@@ -1,48 +1,90 @@
-# Contagem-Moedas
-Este projeto é um sistema de visão computacional que detecta e classifica moedas brasileiras (1 Real, 50, 25, 10 e 5 centavos) em tempo real, usando a webcam, OpenCV e um modelo de inteligência artificial (Keras). Ele exibe o valor total das moedas detectadas na tela.
+---
+Com certeza! Aqui está o conteúdo do `README.md` já formatado e pronto para você colar diretamente no GitHub.
 
-# Funcionalidades Principais
-Detecção Automática: Identifica moedas em vídeo ao vivo da sua webcam.
-Classificação Inteligente: Classifica moedas em 1 Real, 50, 25, 10 e 5 centavos usando um modelo de IA.
-Contagem de Valor: Soma o valor das moedas detectadas e exibe o total.
-Processamento Otimizado: Utiliza técnicas de pré-processamento de imagem e recortes precisos para melhorar a detecção e classificação.
+---
 
-# Como Rodar
-1. Pré-requisitos
-Certifique-se de ter Python e as seguintes bibliotecas instaladas:
+# Detector de Moedas em Tempo Real
 
-  OpenCV: opencv-python
-  NumPy: numpy
-  Keras: keras==2.6.0
-  TensorFlow: tensorflow==2.9.1
+Este projeto é um sistema de visão computacional que detecta e classifica moedas brasileiras (1 Real, 50, 25, 10 e 5 centavos) em tempo real. Ele utiliza sua webcam, OpenCV para processamento de imagem e um modelo de inteligência artificial (Keras) para identificação. O valor total das moedas detectadas é exibido na tela.
 
-Você pode instalá-las com pip:
+---
+
+## Funcionalidades
+
+* **Detecção Automática**: Identifica moedas em tempo real através do feed de vídeo da sua webcam.
+* **Classificação Inteligente**: Classifica as moedas em suas respectivas denominações (1 Real, 50, 25, 10 e 5 centavos) utilizando um modelo de IA pré-treinado.
+* **Contagem de Valor**: Calcula e exibe o valor monetário total das moedas detectadas.
+* **Processamento Otimizado**: Emprega técnicas de pré-processamento de imagem (como desfoque, detecção de bordas e operações morfológicas) e recortes de imagem com margem (padding) para otimizar a detecção de contornos e a precisão da classificação pelo modelo de IA.
+
+---
+
+## Requisitos
+
+Certifique-se de ter o **Python** instalado, junto com as seguintes bibliotecas:
+
+* **OpenCV**: `opencv-python`
+* **NumPy**: `numpy`
+* **Keras**: `keras==2.6.0`
+* **TensorFlow**: `tensorflow==2.9.1`
+
+Você pode instalá-las facilmente via pip:
+
+```bash
 pip install opencv-python numpy keras==2.6.0 tensorflow==2.9.1
-Importante: Use as versões especificadas de Keras e TensorFlow para garantir compatibilidade com o modelo de IA.
+```
 
-2. O Modelo de IA
-Você precisa ter o arquivo do modelo Keras_model.h5 na mesma pasta do script Python. Este modelo é o "cérebro" que classifica as moedas.
-3. Execução
-Conecte sua webcam.
+**Nota Importante**: As versões específicas de Keras e TensorFlow (`2.6.0` e `2.9.1`, respectivamente) são recomendadas para garantir a compatibilidade com o modelo de IA pré-treinado (`Keras_model.h5`).
 
-Abra seu terminal ou prompt de comando.
+---
 
-Navegue até a pasta onde salvou os arquivos do projeto.
+## Como Usar
 
-Execute o script com o comando:
+### 1. Configure seu Ambiente
 
-python seu_script_nome.py
-(Substitua seu_script_nome.py pelo nome do seu arquivo, por exemplo, detector_moedas.py).
+* Tenha o arquivo do modelo de inteligência artificial, **`Keras_model.h5`**, na mesma pasta do seu script Python (`.py`). Este arquivo é essencial para a classificação das moedas.
+* Conecte uma **webcam** ao seu computador.
 
-4. O que você verá
-Duas janelas aparecerão:
-IMG: Mostra a imagem da sua webcam com as moedas detectadas em um retângulo verde, sua classificação e o valor total em Reais.
-IMG PRE: Exibe a imagem pré-processada (em preto e branco com as bordas), útil para entender como o sistema está "vendo" as moedas antes da detecção.
+### 2. Execute o Projeto
 
-# Como Funciona
-O script segue estes passos para cada quadro de vídeo:
-Captura e Pré-processamento: A imagem é capturada, redimensionada e processada (desfoque, detecção de bordas Canny, dilatação e erosão) para isolar as bordas das moedas.
-Detecção de Moedas: Contornos externos são encontrados na imagem pré-processada. Filtros de área e circularidade são aplicados para identificar objetos que realmente se parecem com moedas.
-Recorte Otimizado: A região de cada moeda é recortada da imagem original. Um padding (margem) de 10 pixels é adicionado a este recorte. Isso garante que a moeda inteira seja capturada, mesmo com pequenas variações na detecção, o que é crucial para a precisão do modelo de IA.
-Classificação com IA: O recorte de cada moeda é redimensionado e normalizado, então enviado ao modelo Keras_model.h5 para prever a qual denominação de moeda ela pertence.
-Exibição e Soma: Se a confiança da previsão for alta (acima de 70%), a classe da moeda é exibida. O valor é somado ao total geral, que é mostrado no canto superior direito da tela.
+1.  Abra seu terminal ou prompt de comando.
+2.  Navegue até o diretório onde você salvou os arquivos do projeto.
+3.  Execute o script Python usando o comando:
+
+    ```bash
+    python seu_script_principal.py
+    ```
+    (Substitua `seu_script_principal.py` pelo nome do seu arquivo Python, por exemplo, `detector_moedas.py`).
+
+### 3. Visualização
+
+Ao executar o script, duas janelas serão abertas:
+
+* **`IMG`**: Exibirá o vídeo da sua webcam. Moedas detectadas serão marcadas com um retângulo verde e sua classificação. O valor total acumulado será mostrado no canto superior direito.
+* **`IMG PRE`**: Mostrará a imagem pré-processada (bordas detectadas em branco sobre um fundo preto), o que é útil para visualizar como o sistema está detectando os contornos antes da classificação.
+
+---
+
+## Estrutura do Código (Visão Geral)
+
+O script funciona processando cada frame do vídeo da seguinte forma:
+
+1.  **`preProcess(img)`**: Esta função aplica desfoque Gaussiano e o algoritmo de bordas Canny. Em seguida, usa operações morfológicas (dilatação e erosão) para refinar as bordas, preparando a imagem para a detecção de contornos mais limpos.
+2.  **`DetectarMoeda(img)`**: Recebe um recorte de uma possível moeda. Ela redimensiona e normaliza a imagem para o formato esperado pelo modelo de IA. Então, o modelo faz a previsão, retornando a classe da moeda e a confiança dessa previsão.
+3.  **Loop Principal**:
+    * Captura frames da webcam e os redimensiona.
+    * Aplica `preProcess` para obter as bordas.
+    * Usa `cv2.findContours` para detectar os contornos externos.
+    * Filtra os contornos por **área** (ignorando ruídos pequenos) e **circularidade** (focando em objetos redondos).
+    * Para cada contorno que se assemelha a uma moeda, calcula uma **caixa delimitadora com padding**. Este recorte expandido é crucial para garantir que a moeda inteira seja enviada para o modelo de IA, melhorando a estabilidade da classificação.
+    * Chama `DetectarMoeda` com o recorte otimizado.
+    * Se a confiança da classificação for alta (acima de 70%), a classe da moeda é exibida na tela e seu valor é adicionado à soma total.
+    * As janelas de visualização são atualizadas.
+
+---
+
+## Próximas Etapas e Melhorias
+
+* **Estabilidade da Leitura**: Se você notar que as classificações "piscam" (aparecem e desaparecem rapidamente), considere implementar um **filtro temporal**. Isso envolve rastrear cada moeda ao longo de múltiplos frames e usar a previsão mais consistente (ex: a classe mais frequente) para uma exibição mais estável.
+* **Ajuste de Parâmetros**: Os valores para o `padding`, os thresholds do Canny, a área mínima do contorno e os limites de circularidade podem ser ajustados para otimizar o desempenho em diferentes condições de iluminação ou com outros tipos de moedas.
+
+---
