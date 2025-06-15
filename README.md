@@ -11,10 +11,11 @@ Processamento Otimizado: Utiliza técnicas de pré-processamento de imagem e rec
 1. Pré-requisitos
 Certifique-se de ter Python e as seguintes bibliotecas instaladas:
 
-OpenCV: opencv-python
-NumPy: numpy
-Keras: keras==2.6.0
-TensorFlow: tensorflow==2.9.1
+  OpenCV: opencv-python
+  NumPy: numpy
+  Keras: keras==2.6.0
+  TensorFlow: tensorflow==2.9.1
+
 Você pode instalá-las com pip:
 pip install opencv-python numpy keras==2.6.0 tensorflow==2.9.1
 Importante: Use as versões especificadas de Keras e TensorFlow para garantir compatibilidade com o modelo de IA.
