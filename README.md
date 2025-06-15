@@ -81,10 +81,3 @@ O script funciona processando cada frame do vídeo da seguinte forma:
     * As janelas de visualização são atualizadas.
 
 ---
-
-## Próximas Etapas e Melhorias
-
-* **Estabilidade da Leitura**: Se você notar que as classificações "piscam" (aparecem e desaparecem rapidamente), considere implementar um **filtro temporal**. Isso envolve rastrear cada moeda ao longo de múltiplos frames e usar a previsão mais consistente (ex: a classe mais frequente) para uma exibição mais estável.
-* **Ajuste de Parâmetros**: Os valores para o `padding`, os thresholds do Canny, a área mínima do contorno e os limites de circularidade podem ser ajustados para otimizar o desempenho em diferentes condições de iluminação ou com outros tipos de moedas.
-
----
