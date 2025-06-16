@@ -43,19 +43,9 @@ pip install opencv-python numpy keras==2.6.0 tensorflow==2.9.1
 
 * Tenha o arquivo do modelo de inteligência artificial, **`Keras_model.h5`**, na mesma pasta do seu script Python (`.py`). Este arquivo é essencial para a classificação das moedas.
 * Conecte uma **webcam** ao seu computador.
+* É necessário que o fundo seja preto para melhor resultado
 
-### 2. Execute o Projeto
-
-1.  Abra seu terminal ou prompt de comando.
-2.  Navegue até o diretório onde você salvou os arquivos do projeto.
-3.  Execute o script Python usando o comando:
-
-    ```bash
-    python seu_script_principal.py
-    ```
-    (Substitua `seu_script_principal.py` pelo nome do seu arquivo Python, por exemplo, `detector_moedas.py`).
-
-### 3. Visualização
+### 2. Visualização
 
 Ao executar o script, duas janelas serão abertas:
 
